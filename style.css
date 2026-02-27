@@ -2862,8 +2862,25 @@ nav {
 
 .inline-certificate:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 242, 0, 0.3);
   border-color: var(--clr-light-blue);
+}
+
+.dual-certificate {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.dual-certificate .inline-certificate {
+  flex: 1;
+  margin: 1rem 0;
+}
+
+@media (max-width: 480px) {
+  .dual-certificate {
+    flex-direction: column;
+  }
 }
 
 .certificate-img-inline {
