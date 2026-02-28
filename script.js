@@ -1,6 +1,6 @@
-// Typewriter Effect Variables
-const nameText = "عبد العزيز محمد المحافيظ";
-const titleText = "محاسب و ملم بالأنظمة المحاسبية";
+﻿// Typewriter Effect Variables
+const nameText = "ط¹ط¨ط¯ ط§ظ„ط¹ط²ظٹط² ظ…ط­ظ…ط¯ ط§ظ„ظ…ط­ط§ظپظٹط¸";
+const titleText = "ظ…ط­ط§ط³ط¨ ظˆ ظ…ظ„ظ… ط¨ط§ظ„ط£ظ†ط¸ظ…ط© ط§ظ„ظ…ط­ط§ط³ط¨ظٹط©";
 const nameElement = document.getElementById("typewriter-name");
 const titleElement = document.getElementById("typewriter-title");
 
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ── FreeCodeCamp Section: Progress Bars ──
+  // â”€â”€ FreeCodeCamp Section: Progress Bars â”€â”€
   const fccProgressBars = document.querySelectorAll('.fcc-progress-bar[data-fcc-width]');
   const fccProgressObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { root: null, rootMargin: '0px', threshold: 0.1 });
   fccProgressBars.forEach(bar => fccProgressObserver.observe(bar));
 
-  // ── FreeCodeCamp Section: Stats Counter Animation ──
+  // â”€â”€ FreeCodeCamp Section: Stats Counter Animation â”€â”€
   const fccCounters = document.querySelectorAll('.fcc-stat-num[data-fcc-count]');
   const fccCounterObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.3 });
   fccCounters.forEach(c => fccCounterObserver.observe(c));
 
-  // ── Edraak Section: Progress Bars ──
+  // â”€â”€ Edraak Section: Progress Bars â”€â”€
   const edrProgressBars = document.querySelectorAll('.edr-progress-bar[data-edr-width]');
   const edrProgressObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.1 });
   edrProgressBars.forEach(bar => edrProgressObserver.observe(bar));
 
-  // ── Edraak Section: Stats Counter Animation ──
+  // â”€â”€ Edraak Section: Stats Counter Animation â”€â”€
   const edrCounters = document.querySelectorAll('.edr-stat-num[data-edr-count]');
   const edrCounterObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.3 });
   edrCounters.forEach(c => edrCounterObserver.observe(c));
-  // ── Saylor Academy Section: Progress Bars ──
+  // â”€â”€ Saylor Academy Section: Progress Bars â”€â”€
   const sayProgressBars = document.querySelectorAll('.say-progress-bar[data-say-width]');
   const sayProgressObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.1 });
   sayProgressBars.forEach(bar => sayProgressObserver.observe(bar));
 
-  // ── Saylor Academy Section: Stats Counter Animation ──
+  // â”€â”€ Saylor Academy Section: Stats Counter Animation â”€â”€
   const sayCounters = document.querySelectorAll('.say-stat-num[data-say-count]');
   const sayCounterObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.3 });
   sayCounters.forEach(c => sayCounterObserver.observe(c));
 
-  // ── Coursera Section: Progress Bars ──
+  // â”€â”€ Coursera Section: Progress Bars â”€â”€
   const courProgressBars = document.querySelectorAll('.cour-progress-bar[data-cour-width]');
   const courProgressObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.1 });
   courProgressBars.forEach(bar => courProgressObserver.observe(bar));
 
-  // ── Coursera Section: Stats Counter Animation ──
+  // â”€â”€ Coursera Section: Stats Counter Animation â”€â”€
   const courCounters = document.querySelectorAll('.cour-stat-num[data-cour-count]');
   const courCounterObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.3 });
   courCounters.forEach(c => courCounterObserver.observe(c));
 
-  // ── Certificates Carousel: Toggle Logic ──
+  // â”€â”€ Certificates Carousel: Toggle Logic â”€â”€
   const carousels = document.querySelectorAll('.cert-carousel');
   carousels.forEach(carousel => {
     carousel.addEventListener('click', (e) => {
@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ── Certificates Gallery: Luminous Lightbox Initialization ──
+  // â”€â”€ Certificates Gallery: Luminous Lightbox Initialization â”€â”€
   const certificateLinks = document.querySelectorAll('.certificate-link');
   if (certificateLinks.length > 0) {
     certificateLinks.forEach(link => {
@@ -311,4 +311,36 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+
+  // ── Floating Dock: Active Section Tracking ──
+  const dockItems = document.querySelectorAll('#bubble-dock-container .bubble-item');
+  const sections = document.querySelectorAll('section, header');
+
+  const dockObserverOptions = {
+    root: null,
+    rootMargin: '-40% 0px -40% 0px', // Detect section when it's in the middle of the viewport
+    threshold: 0
+  };
+
+  const dockObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        
+        // Remove active class from all
+        dockItems.forEach(item => {
+          item.classList.remove('active');
+          if (item.getAttribute('data-section') === id) {
+            item.classList.add('active');
+          }
+        });
+      }
+    });
+  }, dockObserverOptions);
+
+  sections.forEach(section => {
+    if (section.id) dockObserver.observe(section);
+  });
 });
+
