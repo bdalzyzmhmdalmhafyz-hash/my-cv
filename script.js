@@ -278,6 +278,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.3 });
   courCounters.forEach(c => courCounterObserver.observe(c));
 
+  // ── Certificates Carousel: Toggle Logic ──
+  const carousels = document.querySelectorAll('.cert-carousel');
+  carousels.forEach(carousel => {
+    carousel.addEventListener('click', (e) => {
+      // If clicking the link (Luminous), don't trigger slide switch
+      if (e.target.closest('.certificate-link')) return;
+
+      const slides = carousel.querySelectorAll('.cert-slide');
+      const dots = carousel.querySelectorAll('.dot');
+      let activeIndex = Array.from(slides).findIndex(s => s.classList.contains('active'));
+
+      // Toggle index
+      slides[activeIndex].classList.remove('active');
+      dots[activeIndex].classList.remove('active');
+
+      activeIndex = (activeIndex + 1) % slides.length;
+
+      slides[activeIndex].classList.add('active');
+      dots[activeIndex].classList.add('active');
+    });
+  });
+
   // ── Certificates Gallery: Luminous Lightbox Initialization ──
   const certificateLinks = document.querySelectorAll('.certificate-link');
   if (certificateLinks.length > 0) {
