@@ -2849,6 +2849,43 @@ nav {
 /* ═══════════════════════════════════════════════════════
    Certificates Gallery Styles
    ═══════════════════════════════════════════════════════ */
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: auto;
+  perspective: 1000px;
+  margin: 1.5rem 0;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 12px;
+}
+
+.flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg);
+}
+
 .inline-certificate {
   margin: 1.5rem 0;
   border-radius: 12px;
@@ -2866,20 +2903,28 @@ nav {
   border-color: var(--clr-light-blue);
 }
 
-.dual-certificate {
-  display: flex;
-  gap: 1rem;
-  width: 100%;
+/* Override for flip cards */
+.flip-card-front .inline-certificate,
+.flip-card-back .inline-certificate {
+  margin: 0;
+  max-width: 100%;
 }
 
-.dual-certificate .inline-certificate {
-  flex: 1;
-  margin: 1rem 0;
+.flip-card-front .inline-certificate:hover,
+.flip-card-back .inline-certificate:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.dual-certificate {
+  display: none;
+  /* Section replaced by flip-card */
 }
 
 @media (max-width: 480px) {
-  .dual-certificate {
-    flex-direction: column;
+  .flip-card:hover .flip-card-inner {
+    transform: none;
+    /* Optional: disable flip on mobile if it feels weird, or keep it */
   }
 }
 
@@ -2887,11 +2932,8 @@ nav {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.5s ease;
-}
-
-.inline-certificate:hover .certificate-img-inline {
-  transform: scale(1.05);
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
 }
 
 .gallery-overlay {
@@ -2906,6 +2948,7 @@ nav {
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  border-radius: 12px;
 }
 
 .gallery-item:hover .gallery-overlay {
@@ -2925,8 +2968,27 @@ nav {
 
 /* Luminous Customization */
 .lum-lightbox {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   z-index: 2000;
+}
+
+.lum-img-inner {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 95vw;
+}
+
+.lum-img-inner img {
+  max-width: 100% !important;
+  max-height: 80vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--glass-border);
+  border-radius: 8px;
 }
 
 .lum-img-caption {
@@ -2934,9 +2996,12 @@ nav {
   font-weight: 600;
   background: var(--clr-bg);
   color: var(--clr-gold);
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 10px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  margin-top: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: fit-content;
 }
 
 /* Responsiveness for Gallery */
