@@ -1,6 +1,6 @@
 ﻿// Typewriter Effect Variables
-const nameText = "ط¹ط¨ط¯ ط§ظ„ط¹ط²ظٹط² ظ…ط­ظ…ط¯ ط§ظ„ظ…ط­ط§ظپظٹط¸";
-const titleText = "ظ…ط­ط§ط³ط¨ ظˆ ظ…ظ„ظ… ط¨ط§ظ„ط£ظ†ط¸ظ…ط© ط§ظ„ظ…ط­ط§ط³ط¨ظٹط©";
+const nameText = "عبد العزيز محمد المحافيظ";
+const titleText = "محاسب و ملم بالأنظمة المحاسبية";
 const nameElement = document.getElementById("typewriter-name");
 const titleElement = document.getElementById("typewriter-title");
 
@@ -327,7 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute('id');
-        
+
         // Remove active class from all
         dockItems.forEach(item => {
           item.classList.remove('active');
