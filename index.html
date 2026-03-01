@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#0f0c29">
     <title>عبد العزيز المحافيظ | السيرة الذاتية</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Luminous Lightbox CSS -->
@@ -246,7 +246,8 @@
     <section id="courses" class="container">
         <h2 class="section-title fade-in">الدورات و الدبلومات</h2>
 
-        <h3 class="fade-in" style="color: var(--clr-light-blue); margin-bottom: 20px;">الدورات المحاسبية</h3>
+        <h3 id="courses-accounting" class="fade-in" style="color: var(--clr-light-blue); margin-bottom: 20px;">الدورات
+            المحاسبية</h3>
         <div class="cards-grid fade-in">
             <div class="card glass-card">
                 <h3>دبلوم المحاسبة والإدارة المالية</h3>
@@ -406,7 +407,8 @@
             </div>
         </div>
 
-        <h3 class="fade-in" style="color: var(--clr-pink); margin-top: 40px; margin-bottom: 20px;">ثانياً: قسم التطوير
+        <h3 id="courses-training" class="fade-in"
+            style="color: var(--clr-pink); margin-top: 40px; margin-bottom: 20px;">ثانياً: قسم التطوير
             والتدريب</h3>
         <div class="cards-grid fade-in">
             <!-- Card 1: OSHA -->
@@ -575,7 +577,8 @@
             </div>
         </div>
 
-        <h3 class="fade-in" style="color: var(--clr-pink); margin-top: 40px; margin-bottom: 20px;">ثالثاً: قسم الدورات
+        <h3 id="courses-software" class="fade-in"
+            style="color: var(--clr-pink); margin-top: 40px; margin-bottom: 20px;">ثالثاً: قسم الدورات
             المتعلقة بالبرامج</h3>
         <div class="cards-grid fade-in">
             <!-- Card 1: ICDL -->
@@ -706,7 +709,8 @@
             </div>
         </div>
 
-        <h3 class="fade-in" style="color: var(--clr-pink); margin-top: 40px; margin-bottom: 20px;">رابعاً: قسم الدورات
+        <h3 id="courses-technical" class="fade-in"
+            style="color: var(--clr-pink); margin-top: 40px; margin-bottom: 20px;">رابعاً: قسم الدورات
             التقنية والإبداعية</h3>
         <div class="cards-grid fade-in">
             <!-- Card 1: Web Development -->
@@ -790,7 +794,8 @@
             </div>
         </div>
 
-        <h3 class="fade-in" style="color: var(--clr-gold); margin-top: 40px; margin-bottom: 20px;">خامساً: قسم اللغات
+        <h3 id="courses-languages" class="fade-in"
+            style="color: var(--clr-gold); margin-top: 40px; margin-bottom: 20px;">خامساً: قسم اللغات
         </h3>
         <div class="cards-grid fade-in">
             <!-- Card 1: Advanced English Diploma -->
@@ -862,7 +867,8 @@
             </div>
         </div>
 
-        <h3 class="fade-in" style="color: var(--clr-gold); margin-top: 40px; margin-bottom: 20px;">سادساً: شهادات الشكر
+        <h3 id="courses-appreciation" class="fade-in"
+            style="color: var(--clr-gold); margin-top: 40px; margin-bottom: 20px;">سادساً: شهادات الشكر
             والتقدير</h3>
         <div class="cards-grid fade-in">
             <!-- Card 1: Secondary Graduation -->
@@ -997,7 +1003,8 @@
             </div>
         </div>
 
-        <h3 class="fade-in" style="color: var(--clr-gold); margin-top: 40px; margin-bottom: 20px;">سابعاً: الإنجازات
+        <h3 id="courses-achievements" class="fade-in"
+            style="color: var(--clr-gold); margin-top: 40px; margin-bottom: 20px;">سابعاً: الإنجازات
             والجوائز 🏆</h3>
         <div class="cards-grid fade-in">
             <!-- Card 1: Quran Memorization Shield -->
@@ -2052,10 +2059,61 @@
         </ul>
     </div>
 
+    <!-- Orbit Overlay for Courses -->
+    <div id="courses-orbit-overlay">
+        <div class="orbit-center">
+            <i class="fas fa-book"></i>
+        </div>
+        <div class="orbit-system">
+            <div class="orbit-item" data-target="courses-accounting" style="--angle: 0deg;">
+                <div class="orbit-item-inner">
+                    <i class="fas fa-calculator"></i>
+                    <span class="orbit-text">المحاسبة</span>
+                </div>
+            </div>
+            <div class="orbit-item" data-target="courses-training" style="--angle: 51.4deg;">
+                <div class="orbit-item-inner">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="orbit-text">التطوير</span>
+                </div>
+            </div>
+            <div class="orbit-item" data-target="courses-software" style="--angle: 102.8deg;">
+                <div class="orbit-item-inner">
+                    <i class="fas fa-laptop-code"></i>
+                    <span class="orbit-text">البرامج</span>
+                </div>
+            </div>
+            <div class="orbit-item" data-target="courses-technical" style="--angle: 154.2deg;">
+                <div class="orbit-item-inner">
+                    <i class="fas fa-cogs"></i>
+                    <span class="orbit-text">التقنية</span>
+                </div>
+            </div>
+            <div class="orbit-item" data-target="courses-languages" style="--angle: 205.7deg;">
+                <div class="orbit-item-inner">
+                    <i class="fas fa-language"></i>
+                    <span class="orbit-text">اللغات</span>
+                </div>
+            </div>
+            <div class="orbit-item" data-target="courses-appreciation" style="--angle: 257.1deg;">
+                <div class="orbit-item-inner">
+                    <i class="fas fa-award"></i>
+                    <span class="orbit-text">التقدير</span>
+                </div>
+            </div>
+            <div class="orbit-item" data-target="courses-achievements" style="--angle: 308.5deg;">
+                <div class="orbit-item-inner">
+                    <i class="fas fa-trophy"></i>
+                    <span class="orbit-text">الإنجازات</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Luminous Lightbox JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/Luminous.min.js"></script>
     <!-- Script references -->
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
 </body>
 
 </html>

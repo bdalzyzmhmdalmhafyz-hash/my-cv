@@ -342,5 +342,68 @@ document.addEventListener("DOMContentLoaded", () => {
   sections.forEach(section => {
     if (section.id) dockObserver.observe(section);
   });
+
+  // ── Courses Orbit Overlay Logic ──
+  const coursesDockBtn = document.querySelector('.bubble-item[data-section="courses"] a');
+  const orbitOverlay = document.getElementById('courses-orbit-overlay');
+
+  if (coursesDockBtn && orbitOverlay) {
+    // Open Overlay
+    coursesDockBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      orbitOverlay.classList.add('active');
+    });
+
+    // Close Overlay Function
+    const closeOrbitOverlay = () => {
+      orbitOverlay.classList.remove('active');
+    };
+
+    // Close on clicking outside the orbit system
+    orbitOverlay.addEventListener('click', (e) => {
+      if (e.target === orbitOverlay) {
+        closeOrbitOverlay();
+      }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && orbitOverlay.classList.contains('active')) {
+        closeOrbitOverlay();
+      }
+    });
+
+    // Handle clicking on an orbit category item
+    const orbitItems = orbitOverlay.querySelectorAll('.orbit-item');
+    orbitItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const targetId = item.getAttribute('data-target');
+        const targetEl = document.getElementById(targetId);
+
+        // Add a visual effect: fade out other items
+        orbitItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.add('fade-out');
+          }
+        });
+
+        // After a brief delay for a premium feel
+        setTimeout(() => {
+          closeOrbitOverlay();
+
+          // Reset styles after the closing transition
+          setTimeout(() => {
+            orbitItems.forEach(otherItem => otherItem.classList.remove('fade-out'));
+          }, 300);
+
+          // Smooth scroll to the requested section
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 400);
+      });
+    });
+  }
+
 });
 
