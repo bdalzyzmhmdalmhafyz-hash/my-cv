@@ -442,14 +442,6 @@ nav {
   font-size: 0.95rem;
 }
 
-.experience-list li::before {
-  content: 'âœ“';
-  position: absolute;
-  right: 0;
-  color: var(--clr-light-blue);
-  font-size: 0.9rem;
-}
-
 /* Card Lift & Grid */
 .cards-grid {
   display: grid;
@@ -511,28 +503,47 @@ nav {
 }
 
 .skill-name {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  transition: transform 0.3s ease;
+}
+
+.skill-box:hover .skill-name {
+  transform: translateX(-5px);
+}
+
+.skill-name i {
+  font-size: 1.4rem;
+  width: 30px;
+  text-align: center;
 }
 
 .progress-bar-wrap {
   width: 100%;
-  height: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .progress-bar {
   height: 100%;
-  border-radius: 10px;
+  border-radius: 20px;
   background: linear-gradient(90deg, var(--clr-light-blue), var(--clr-purple));
   width: 0;
-  /* Dynamic via JS or CSS */
-  transition: width 1.5s ease-in-out;
+  transition: width 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.skill-box:hover .progress-bar {
+  filter: brightness(1.2) drop-shadow(0 0 8px currentColor);
 }
 
 /* Accordion */
