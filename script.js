@@ -1,5 +1,4 @@
-﻿console.log('Script v4 loaded');
-// Typewriter Effect Variables
+﻿// Typewriter Effect Variables
 const nameText = "عبد العزيز محمد المحافيظ";
 const titleText = "محاسب و ملم بالأنظمة المحاسبية";
 const nameElement = document.getElementById("typewriter-name");
@@ -437,112 +436,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 2000);
   }
 
-  // ── Gemini AI: Chat functionality ──
-  window.toggleAbdulazizChat = function () {
-    const windowEl = document.getElementById('chatbot-window');
-    if (windowEl) {
-      windowEl.classList.toggle('active');
-      if (windowEl.classList.contains('active')) {
-        const inputEl = document.getElementById('chat-input');
-        if (inputEl) setTimeout(() => inputEl.focus(), 300);
-      }
-    }
-  };
-
-  const chatbotFloat = document.getElementById('chatbot-float');
-  if (chatbotFloat) {
-    chatbotFloat.onclick = function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      window.toggleAbdulazizChat();
-    };
-  }
-
-  const chatCloseBtn = document.getElementById('chat-close-btn');
-  if (chatCloseBtn) {
-    chatCloseBtn.onclick = function (e) {
-      e.stopPropagation();
-      window.toggleAbdulazizChat();
-    };
-  }
-
-
-  const chatMessages = document.getElementById('chat-messages');
-  const chatInput = document.getElementById('chat-input');
-  const chatSendBtn = document.getElementById('chat-send-btn');
-
-  // API Key - سيتم استبداله تلقائياً عند الرفع على GitHub Pages
-  const GEMINI_API_KEY = "AIzaSyBgsSsV7rkrVB2-X4zXlrr6gx_0_3_J-nI";
-
-  const addMessage = (text, type) => {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${type}-message`;
-    messageDiv.textContent = text;
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    return messageDiv;
-  };
-
-  const showTypingIndicator = () => {
-    const indicator = document.createElement('div');
-    indicator.className = 'typing-indicator';
-    indicator.id = 'typing-indicator';
-    indicator.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
-    chatMessages.appendChild(indicator);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    return indicator;
-  };
-
-  const removeTypingIndicator = () => {
-    const indicator = document.getElementById('typing-indicator');
-    if (indicator) indicator.remove();
-  };
-
-  const sendMessage = async () => {
-    const text = chatInput.value.trim();
-    if (!text) return;
-
-    chatInput.value = '';
-    addMessage(text, 'user');
-
-    const typingIndicator = showTypingIndicator();
-
-    try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{
-              text: `أنت المساعد الذكي الخاص بـ "عبد العزيز محمد المحافيظ". 
-                     أجب بلباقة وبشكل احترافي. 
-                     حالياً أنت في وضع "المساعد العام". 
-                     السؤال: ${text}`
-            }]
-          }]
-        })
-      });
-
-      const data = await response.json();
-      removeTypingIndicator();
-
-      if (data.candidates && data.candidates[0].content.parts[0].text) {
-        addMessage(data.candidates[0].content.parts[0].text, 'ai');
-      } else {
-        addMessage('عذراً، حدث خطأ ما في معالجة طلبك.', 'ai');
-      }
-    } catch (error) {
-      console.error('Chatbot Error:', error);
-      removeTypingIndicator();
-      addMessage('عذراً، لا يمكنني الاتصال بالخادم حالياً.', 'ai');
-    }
-  };
-
-  if (chatSendBtn) chatSendBtn.addEventListener('click', sendMessage);
-  if (chatInput) {
-    chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') sendMessage();
-    });
-  }
 });
 
+// Satar Platform - Learning Path Toggling
+function toggleSatarPath() {
+  const pathCard = document.getElementById('satar-uxui-path');
+  if (!pathCard) return;
+
+  const isHidden = window.getComputedStyle(pathCard).display === 'none';
+
+  if (isHidden) {
+    // Show
+    pathCard.style.setProperty('display', 'block', 'important');
+    // Trigger reflow for transition
+    pathCard.offsetHeight;
+    pathCard.style.opacity = '1';
+    pathCard.style.transform = 'translateY(0)';
+
+    // Scroll into view
+    setTimeout(() => {
+      pathCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  } else {
+    // Hide
+    pathCard.style.opacity = '0';
+    pathCard.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+      pathCard.style.setProperty('display', 'none', 'important');
+    }, 500);
+  }
+}

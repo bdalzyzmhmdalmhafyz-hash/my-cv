@@ -1147,6 +1147,9 @@
                     </div>
                     <div class="edr2-spec-meta">
                         <span class="edr2-badge-verified"><i class="fas fa-check-double"></i> تخصص معتمد</span>
+                        <span class="edr2-meta-tag"
+                            style="background: rgba(0, 165, 165, 0.1); color: #00E5E5; border-color: rgba(0, 229, 229, 0.2);"><i
+                                class="fas fa-mouse-pointer"></i> اضغط لعرض المساقات</span>
                         <span class="edr2-meta-tag"><i class="fas fa-layer-group"></i> 4 مساقات</span>
                     </div>
                     <div class="edr2-spec-toggle"><i class="fas fa-chevron-down"></i></div>
@@ -1337,6 +1340,9 @@
                     </div>
                     <div class="edr2-spec-meta">
                         <span class="edr2-badge-verified"><i class="fas fa-check-double"></i> تخصص معتمد</span>
+                        <span class="edr2-meta-tag"
+                            style="background: rgba(168, 85, 247, 0.1); color: #a855f7; border-color: rgba(168, 85, 247, 0.2);"><i
+                                class="fas fa-mouse-pointer"></i> اضغط لعرض المساقات</span>
                         <span class="edr2-meta-tag"><i class="fas fa-layer-group"></i> 3 مساقات</span>
                     </div>
                     <div class="edr2-spec-toggle"><i class="fas fa-chevron-down"></i></div>
@@ -1648,7 +1654,8 @@
 
             <div class="satar-categories-grid fade-in">
                 <!-- Tracks -->
-                <div class="satar-category-card">
+                <div class="satar-category-card" id="satar-tracks-card" style="cursor: pointer;"
+                    onclick="toggleSatarPath()">
                     <div class="s-cat-bg"></div>
                     <div class="s-cat-icon">
                         <i class="fas fa-route"></i>
@@ -1677,14 +1684,15 @@
                     </ul>
                 </div>
 
-                <!-- How Tos -->
+                <!-- Bootcamps -->
                 <div class="satar-category-card">
                     <div class="s-cat-bg"></div>
                     <div class="s-cat-icon">
-                        <i class="fas fa-lightbulb"></i>
+                        <i class="fas fa-terminal"></i>
                     </div>
-                    <h4>الكيفيات</h4>
-                    <p>دروس تطبيقية للتدريب العملي المباشر.</p>
+                    <h4>المعسكرات</h4>
+                    <p>برنامج تدريبي تقني مكثف يركز على تطوير المهارات الرقمية من خلال التعلم التطبيقي وتنفيذ مشاريع
+                        عملية في مختلف المجلات</p>
                     <ul class="satar-inner-list">
                         <li>كيف ترفع مشروعك على GitHub</li>
                         <li>كيف تستخدم أدوات مطوري المتصفح</li>
@@ -1693,8 +1701,88 @@
                 </div>
             </div>
 
+            <!-- UX/UI Learning Path Container -->
+            <div id="satar-uxui-path" class="satar-category-card satar-path-card"
+                style="grid-column: 1 / -1; margin-top: 2rem; display: none; opacity: 0; transform: translateY(20px); transition: all 0.5s ease;">
+                <div class="s-cat-bg"></div>
+                <div class="s-cat-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+                    <div class="s-cat-icon"
+                        style="margin-bottom: 0; background: linear-gradient(135deg, #a855f7, #ec4899); box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div style="text-align: right;">
+                        <h4 style="margin-bottom: 5px; font-size: 1.5rem; color: #fff;">مسار تصميم الواجهات وتجربة
+                            المستخدم UX/UI</h4>
+                        <p style="margin-bottom: 0; font-size: 0.95rem; color: #B0C4C4;">رحلة تعليمية متكاملة لاحتراف
+                            تصميم واجهات المستخدِم وتحسين تجربتهم.</p>
+                    </div>
+                </div>
 
-        </div>
+                <div class="satar-certs-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+                    <!-- Course 1 -->
+                    <div class="satar-cert-item"
+                        style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; border: 1px solid rgba(168,85,247,0.2); transition: transform 0.3s; text-align: center;">
+                        <div class="inline-certificate" style="margin-bottom: 15px;">
+                            <a href="assets/Satr Online Platform/Learning Paths/ux_ui_design_path/ux_ui_course.png"
+                                class="certificate-link" data-title="دورة تصميم تجربة واجهة المستخدم UX/UI">
+                                <img src="assets/Satr Online Platform/Learning Paths/ux_ui_design_path/ux_ui_course.png"
+                                    alt="UX/UI Course" loading="lazy" class="certificate-img-inline"
+                                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                            </a>
+                        </div>
+                        <h5 style="color: #fff; font-size: 1rem; margin: 0;">دورة UX/UI</h5>
+                    </div>
+
+                    <!-- Course 2 -->
+                    <div class="satar-cert-item"
+                        style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; border: 1px solid rgba(168,85,247,0.2); transition: transform 0.3s; text-align: center;">
+                        <div class="inline-certificate" style="margin-bottom: 15px;">
+                            <a href="assets/Satr Online Platform/Learning Paths/ux_ui_design_path/ux_research_planning.png"
+                                class="certificate-link" data-title="دورة البحث والتخطيط في تجربة المستخدم UX">
+                                <img src="assets/Satr Online Platform/Learning Paths/ux_ui_design_path/ux_research_planning.png"
+                                    alt="UX Research" loading="lazy" class="certificate-img-inline"
+                                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                            </a>
+                        </div>
+                        <h5 style="color: #fff; font-size: 1rem; margin: 0;">البحث والتخطيط</h5>
+                    </div>
+
+                    <!-- Course 3 -->
+                    <div class="satar-cert-item"
+                        style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; border: 1px solid rgba(168,85,247,0.2); transition: transform 0.3s; text-align: center;">
+                        <div class="inline-certificate" style="margin-bottom: 15px;">
+                            <a href="assets/Satr Online Platform/Learning Paths/ux_ui_design_path/ui_prototyping.png"
+                                class="certificate-link" data-title="دورة تصميم النماذج الأولية UI Prototyping">
+                                <img src="assets/Satr Online Platform/Learning Paths/ux_ui_design_path/ui_prototyping.png"
+                                    alt="UI Prototyping" loading="lazy" class="certificate-img-inline"
+                                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                            </a>
+                        </div>
+                        <h5 style="color: #fff; font-size: 1rem; margin: 0;">تصميم النماذج الأولية</h5>
+                    </div>
+
+                    <!-- Course 4 -->
+                    <div class="satar-cert-item"
+                        style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; border: 1px solid rgba(168,85,247,0.2); transition: transform 0.3s; text-align: center;">
+                        <div class="inline-certificate" style="margin-bottom: 15px;">
+                            <a href="assets/Satr Online Platform/Learning Paths/ux_ui_design_path/ux_ui_applied_project.png"
+                                class="certificate-link" data-title="المشروع التطبيقي لمسار UX/UI">
+                                <img src="assets/Satr Online Platform/Learning Paths/ux_ui_design_path/ux_ui_applied_project.png"
+                                    alt="Applied Project" loading="lazy" class="certificate-img-inline"
+                                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                                <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                            </a>
+                        </div>
+                        <h5 style="color: #fff; font-size: 1rem; margin: 0;">مشروع تطبيقي</h5>
+                    </div>
+                </div>
+
+
+            </div>
     </section>
 
     <!-- FreeCodeCamp Platform Section -->
@@ -2349,11 +2437,11 @@
         </div>
     </section>
 
+    </section>
 
-    <div class="floating-actions">
+    <div class="floating-actions fade-in">
         <!-- AI Chatbot Icon -->
-        <div id="chatbot-float" title="المساعد الذكي عبد العزيز"
-            onclick="if(window.toggleAbdulazizChat) window.toggleAbdulazizChat()">
+        <div id="chatbot-float" title="المساعد الذكي عبد العزيز">
             <!-- Chat Bubble -->
             <div class="chatbot-bubble" id="chatbot-bubble">
                 <span class="chatbot-bubble-text" id="chatbot-bubble-text"></span>
@@ -2392,39 +2480,6 @@
             target="_blank" title="تحميل السيرة الذاتية (PDF)">
             <i class="fas fa-file-pdf"></i>
         </a>
-    </div>
-
-    <!-- AI Chatbot Window -->
-    <div id="chatbot-window">
-        <div class="chat-header">
-            <div class="chat-header-info">
-                <div class="chat-header-avatar">
-                    <img src="assets/primary_image/chatbot_main_image.png" alt="AI">
-                    <span class="status-online"></span>
-                </div>
-                <div>
-                    <h4>عبد العزيز - مساعد ذكي</h4>
-                    <span>متاح حالياً للمساعدة</span>
-                </div>
-            </div>
-            <button class="chat-close-btn" id="chat-close-btn">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-
-        <div class="chat-messages" id="chat-messages">
-            <!-- Messages will be injected here -->
-            <div class="message ai-message">
-                مرحباً بك! أنا مساعد عبد العزيز الذكي. كيف يمكنني مساعدتك اليوم؟
-            </div>
-        </div>
-
-        <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="اكتب رسالتك هنا..." dir="rtl">
-            <button id="chat-send-btn">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
     </div>
 
     <!-- Floating Moving Bubbles Dock -->
@@ -2516,7 +2571,7 @@
     <!-- Luminous Lightbox JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/Luminous.min.js"></script>
     <!-- Script references -->
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=3"></script>
 </body>
 
 </html>
