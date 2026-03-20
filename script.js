@@ -303,7 +303,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.round(target * eased) + (target > 10 ? '+' : '');
+          const currentVal = Math.round(target * eased);
+          el.textContent = (target > 10 ? '+' : '') + currentVal;
           if (progress < 1) {
             requestAnimationFrame(updateCourCounter);
           }
