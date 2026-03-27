@@ -7,11 +7,12 @@
     <meta name="theme-color" content="#0f0c29">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="عبد العزيز المحافيظ">
+    <meta name="apple-mobile-web-app-title" content="عبد العزيز">
     <link rel="apple-touch-icon" href="assets/primary_image/profile.png">
     <title>عبد العزيز المحافيظ | السيرة الذاتية</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="chatbot.css?v=4">
 
     <!-- Google Generative AI will be loaded via standard ES Module directly -->
 
@@ -2485,7 +2486,27 @@
     <!-- Luminous Lightbox JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/Luminous.min.js"></script>
     <!-- Script references -->
-    <script src="script.js?v=4"></script>
+    <!-- PWA UI Components -->
+    <div id="pwa-update-toast" class="glass-card">
+        <span>تحديث جديد متوفر في سيرة عبد العزيز!</span>
+        <button id="pwa-refresh-btn" onclick="window.location.reload()">تحديث الآن</button>
+    </div>
+
+    <div id="pwa-install-prompt" class="modal-overlay">
+        <div class="prompt-card glass-card">
+            <div class="prompt-header">
+                <img src="assets/primary_image/profile.png" alt="Abdulaziz" class="prompt-icon">
+                <h3>أهلاً بك في سيرتي الذاتية!</h3>
+                <p>هل تود إضافة السيرة الذاتية لشاشة الجوال للوصول السريع لخبراتي ودوراتي؟</p>
+            </div>
+            <div class="prompt-actions">
+                <button id="btn-pwa-install" class="install-main">تثبيت التطبيق الآن</button>
+                <button id="btn-pwa-close" class="install-close">لاحقاً، شكراً لك</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=6"></script>
 
     <!-- Chatbot Floating Button & Popup Script (JSON Keyword Based) -->
     <script>
