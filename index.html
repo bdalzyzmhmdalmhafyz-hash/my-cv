@@ -8,11 +8,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="عبد العزيز">
-    <link rel="apple-touch-icon" href="assets/primary_image/profile.png">
+    <link rel="apple-touch-icon" href="assets/primary_image/Gemini_Generated_Image_3osoi73osoi73oso.png">
     <title>عبد العزيز المحافيظ | السيرة الذاتية</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css?v=5">
-    <link rel="stylesheet" href="chatbot.css?v=4">
+    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="chatbot.css?v=6">
 
     <!-- Google Generative AI will be loaded via standard ES Module directly -->
 
@@ -2271,9 +2271,9 @@
                 <span class="orbit-particle p3"></span>
                 <span class="orbit-particle p4"></span>
             </div>
-            <!-- Chat Bubble -->
-            <div class="chatbot-bubble" id="chatbot-bubble">
-                <span class="bubble-text" id="bubble-text">هل تريد معرفة مهاراتي؟</span>
+            <!-- Chat Bubble (Set to bubble-hide by default) -->
+            <div class="chatbot-bubble bubble-hide" id="chatbot-bubble">
+                <span class="bubble-text" id="bubble-text">هل تريد استكشاف سيرتي الذاتية؟ 📄</span>
                 <div class="bubble-tail"></div>
             </div>
             <!-- Main Icon Button -->
@@ -2495,7 +2495,7 @@
     <div id="pwa-install-prompt" class="modal-overlay">
         <div class="prompt-card glass-card">
             <div class="prompt-header">
-                <img src="assets/primary_image/profile.png" alt="Abdulaziz" class="prompt-icon">
+                <img src="assets/primary_image/Gemini_Generated_Image_3osoi73osoi73oso.png" alt="Abdulaziz" class="prompt-icon">
                 <h3>أهلاً بك في سيرتي الذاتية!</h3>
                 <p>هل تود إضافة السيرة الذاتية لشاشة الجوال للوصول السريع لخبراتي ودوراتي؟</p>
             </div>
@@ -2506,7 +2506,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=6"></script>
+    <script src="script.js?v=7"></script>
 
     <!-- Chatbot Floating Button & Popup Script (JSON Keyword Based) -->
     <script>
@@ -2590,23 +2590,36 @@
         "لدي خبرة تزيد عن 4 سنوات ككاشير ومبيعات 💼",
         "سلسلة تعلم متواصل 1100 يوم على Duolingo! 🦉✨"
     ];
-    let msgIndex = 0;
+    let msgIndex = -1; 
     const bubbleText = document.getElementById('bubble-text');
     const chatbotBubble = document.getElementById('chatbot-bubble');
 
     function showNextMessage() {
         if (!chatbotBubble) return;
-        chatbotBubble.classList.add('bubble-hide');
+        
+        // 1. استخراج الرسالة التالية
+        msgIndex = (msgIndex + 1) % messages.length;
+        if(bubbleText) bubbleText.textContent = messages[msgIndex];
+        
+        // 2. إظهار الفقاعة (إزالة الإخفاء وإضافة تأثير الظهور)
+        chatbotBubble.classList.remove('bubble-hide');
+        chatbotBubble.classList.add('bubble-show');
+        
+        // إزالة فئة التأثير بعد انتهاء الأنميشن
+        setTimeout(() => chatbotBubble.classList.remove('bubble-show'), 600);
+        
+        // 3. البقاء ظاهراً لمدة 4 ثوانٍ تماماً
         setTimeout(() => {
-            msgIndex = (msgIndex + 1) % messages.length;
-            if(bubbleText) bubbleText.textContent = messages[msgIndex];
-            chatbotBubble.classList.remove('bubble-hide');
-            chatbotBubble.classList.add('bubble-show');
-            setTimeout(() => chatbotBubble.classList.remove('bubble-show'), 600);
-        }, 400);
+            // 4. إخفاء الفقاعة (سيستخدم الآن !important من CSS لضمان الاختفاء)
+            chatbotBubble.classList.add('bubble-hide');
+            
+            // 5. الانتظار لمدة 10 ثوانٍ كاملة وهي مخفية
+            setTimeout(showNextMessage, 10000);
+        }, 4000); 
     }
 
-    setInterval(showNextMessage, 4000);
+    // بدء الدورة الأولى بعد 3 ثوانٍ
+    setTimeout(showNextMessage, 3000);
 
     /* ── POPUP LOGIC ── */
     const chatbotFab = document.getElementById('chatbot-fab');

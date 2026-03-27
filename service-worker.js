@@ -1,4 +1,4 @@
-const CACHE_NAME = 'abdulaziz-cv-v1';
+const CACHE_NAME = 'abdulaziz-cv-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -6,7 +6,7 @@ const ASSETS_TO_CACHE = [
   './script.js',
   './chatbot.css',
   './manifest.json',
-  './assets/primary_image/profile.png',
+  './assets/primary_image/Gemini_Generated_Image_3osoi73osoi73oso.png',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
   'https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.4.0/luminous-basic.min.css'
 ];
