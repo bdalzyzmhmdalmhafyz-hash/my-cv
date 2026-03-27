@@ -71,13 +71,27 @@ function initAccordions() {
   });
 }
 
-// Service Worker Registration
+// Service Worker Registration & PWA Logic
+let deferredPrompt;
+
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
+      // Register our new service-worker.js
+      navigator.serviceWorker.register('service-worker.js')
         .then(registration => {
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          console.log('ServiceWorker registration successful:', registration.scope);
+          
+          // Monitor for updates
+          registration.onupdatefound = () => {
+            const installingWorker = registration.installing;
+            installingWorker.onstatechange = () => {
+              if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                // New update available!
+                showUpdateToast();
+              }
+            };
+          };
         })
         .catch(err => {
           console.log('ServiceWorker registration failed: ', err);
@@ -85,6 +99,106 @@ function registerServiceWorker() {
     });
   }
 }
+
+// Show Toast Notification for updates
+function showUpdateToast() {
+  const toast = document.createElement('div');
+  toast.id = 'pwa-update-toast';
+  toast.innerHTML = `
+    <div class="toast-content">
+      <span>تحديث جديد متوفر في سيرة عبد العزيز!</span>
+      <button id="pwa-refresh-btn">تحديث الآن</button>
+    </div>
+  `;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => toast.classList.add('show'), 100);
+
+  document.getElementById('pwa-refresh-btn').onclick = () => {
+    window.location.reload();
+  };
+}
+
+// GitHub Version Check (Mock or simplified version check)
+// Since we are on GitHub Pages, we can check a version file or headers
+async function checkForGitHubUpdates() {
+    try {
+        // You can fetch a specific file like manifest.json or a version.json
+        // to check headers or content.
+        const response = await fetch('manifest.json', { cache: 'no-store' });
+        const lastModified = response.headers.get('last-modified');
+        const storedLastModified = localStorage.getItem('pwa-last-modified');
+
+        if (storedLastModified && lastModified && lastModified !== storedLastModified) {
+            console.log('New update detected on GitHub!');
+            showUpdateToast();
+        }
+        
+        if (lastModified) {
+            localStorage.setItem('pwa-last-modified', lastModified);
+        }
+    } catch (e) {
+        console.log('Update check failed', e);
+    }
+}
+
+// Custom Install Prompt Logic
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  
+  // Show custom install UI on first visit or if not installed
+  if (!localStorage.getItem('pwa-installed')) {
+    showInstallPrompt();
+  }
+});
+
+function showInstallPrompt() {
+  const prompt = document.createElement('div');
+  prompt.id = 'pwa-install-prompt';
+  prompt.dir = 'rtl';
+  prompt.innerHTML = `
+    <div class="prompt-card glass-card">
+      <div class="prompt-header">
+        <img src="assets/primary_image/profile.png" alt="Abdulaziz" class="prompt-icon">
+        <h3>أضف السيرة الذاتية لشاشة الجوال</h3>
+      </div>
+      <p>للوصول السريع لخبراتي ودوراتي المحاسبية والتقنية في أي وقت، حتى بدون إنترنت!</p>
+      <div class="prompt-actions">
+        <button id="pwa-install-btn" class="install-main">إضافة الآن</button>
+        <button id="pwa-close-btn" class="install-close">لاحقاً</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(prompt);
+  
+  setTimeout(() => prompt.classList.add('show'), 500);
+
+  document.getElementById('pwa-install-btn').onclick = () => {
+    prompt.classList.remove('show');
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+        localStorage.setItem('pwa-installed', 'true');
+      }
+      deferredPrompt = null;
+      setTimeout(() => prompt.remove(), 500);
+    });
+  };
+
+  document.getElementById('pwa-close-btn').onclick = () => {
+    prompt.classList.remove('show');
+    setTimeout(() => prompt.remove(), 500);
+  };
+}
+
+window.addEventListener('appinstalled', () => {
+  localStorage.setItem('pwa-installed', 'true');
+  console.log('PWA was installed');
+});
 
 // Initialization on DOM Load
 document.addEventListener("DOMContentLoaded", () => {
@@ -178,6 +292,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Register PWA Service Worker
   registerServiceWorker();
+
+  // Start Update Monitoring
+  checkForGitHubUpdates();
+
 
   // Smooth Scroll for Navbar Links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -609,17 +727,4 @@ function toggleSatarCourses() {
   }
 }
 
-// PWA Service Worker (Previously existed, keeping for safety or re-binding if needed)
-function registerServiceWorker() {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(registration => {
-          console.log('ServiceWorker registration successful');
-        })
-        .catch(err => {
-          console.log('ServiceWorker registration failed: ', err);
-        });
-    });
-  }
-}
+// Removed old sw.js registration logic as it's handled above
