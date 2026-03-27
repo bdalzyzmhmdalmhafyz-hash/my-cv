@@ -2465,15 +2465,15 @@
 
         <!-- Quick Replies -->
         <div class="quick-replies" id="quick-replies">
-            <button class="quick-btn" onclick="sendQuickReply('من أنت؟')">من أنت؟</button>
-            <button class="quick-btn" onclick="sendQuickReply('ما هي مهارات عبد العزيز؟')">ما هي مهارات عبد العزيز؟</button>
-            <button class="quick-btn" onclick="sendQuickReply('أريد التواصل به')">أريد التواصل به</button>
+            <button class="quick-btn">من أنت؟</button>
+            <button class="quick-btn">ما هي مهارات عبد العزيز؟</button>
+            <button class="quick-btn">أريد التواصل به</button>
         </div>
 
         <!-- Input Area -->
         <div class="chatbot-input-area">
-            <input type="text" id="chatbot-input" class="chatbot-input" placeholder="اكتب رسالتك هنا..." onkeypress="handleEnter(event)">
-            <button class="chatbot-send-btn" id="chatbot-send-btn" aria-label="إرسال" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            <input type="text" id="chatbot-input" class="chatbot-input" placeholder="اكتب رسالتك هنا...">
+            <button class="chatbot-send-btn" id="chatbot-send-btn" aria-label="إرسال"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
@@ -2588,6 +2588,29 @@
     window.handleEnter = function(e) {
         if (e.key === 'Enter') window.sendMessage();
     };
+
+    // ربط الأحداث برمجياً لتجنب مشاكل (CSP) التي تمنع onclick في GitHub Pages
+    setTimeout(() => {
+        const sendBtn = document.getElementById('chatbot-send-btn');
+        if (sendBtn) {
+            sendBtn.addEventListener('click', window.sendMessage);
+        }
+
+        const chatInputBox = document.getElementById('chatbot-input');
+        if (chatInputBox) {
+            chatInputBox.addEventListener('keypress', window.handleEnter);
+        }
+
+        // ربط أزرار الردود السريعة برمجياً
+        const quickBtns = document.querySelectorAll('.quick-btn');
+        quickBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // نأخذ النص من داخل الزر ونرسله
+                const text = this.textContent.trim();
+                window.sendQuickReply(text);
+            });
+        });
+    }, 100);
     </script>
 </body>
 
