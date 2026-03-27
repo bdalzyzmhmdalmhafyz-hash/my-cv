@@ -4196,6 +4196,7 @@ nav {
 }
 
 /* ══════════════════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════════════════════════════════
    Dynamic Certificate Modal Styles
    ══════════════════════════════════════════════════════════════════════════════ */
 
@@ -4209,7 +4210,6 @@ nav {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: none;
-  /* Hidden by default */
   align-items: center;
   justify-content: center;
   z-index: 10000;
@@ -4297,7 +4297,6 @@ nav {
   display: flex;
   transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
   width: 200%;
-  /* Two slides */
 }
 
 .modal-slide {
@@ -4311,10 +4310,8 @@ nav {
 
 .modal-slider.show-issuer {
   transform: translateX(50%);
-  /* Move Slide 1 out to the right, bringing Slide 2 (from the left) into view in RTL */
 }
 
-/* Certificate Slide */
 .cert-preview-wrapper {
   width: 100%;
   max-height: 450px;
@@ -4331,7 +4328,6 @@ nav {
   object-fit: contain;
 }
 
-/* Issuer Info Slide */
 .issuer-info-card {
   width: 100%;
   text-align: center;
@@ -4357,13 +4353,9 @@ nav {
 
 .issuer-logo-wrapper.full-width-logo {
   width: calc(100% + 60px);
-  /* Bleed out to card edges */
   height: 220px;
-  /* Specific height for prominence */
   margin: -30px -30px 25px -30px;
-  /* Compensate for parent padding */
   border-radius: 20px 20px 0 0;
-  /* Match card top corners */
   padding: 0;
   background: #000;
   box-shadow: inset 0 -50px 50px rgba(0, 0, 0, 0.5);
@@ -4374,7 +4366,6 @@ nav {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Fill the entire area */
   border-radius: inherit;
   opacity: 0.9;
   transition: 0.5s;
@@ -4485,47 +4476,79 @@ nav {
   overflow: hidden;
 }
 
-.btn-open-issuer::before {
+.btn-open-issuer:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(166, 123, 91, 0.8);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ═══════════ HUSA Details Button (Modern Rectangular Style) ═══════════ */
+.husa-details-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #02aab0 0%, #00cdac 100%);
+  color: white !important;
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 15px auto;
+  width: 90%;
+  max-width: 280px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 205, 172, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.husa-details-btn img {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 6px;
+  background: white;
+  padding: 2px;
+  object-fit: contain;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.husa-details-btn span {
+  white-space: nowrap;
+}
+
+.husa-details-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 205, 172, 0.5);
+  filter: brightness(1.1);
+}
+
+.husa-details-btn:hover img {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.husa-details-btn::after {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.6s;
 }
 
-.btn-open-issuer i {
-  font-size: 1.2rem;
-  color: #A67B5B;
-  /* Theme Gold/Brown */
-  transition: 0.3s;
-}
-
-.btn-open-issuer:hover {
-  background: rgba(166, 123, 91, 0.15);
-  border-color: #A67B5B;
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(166, 123, 91, 0.3);
-  letter-spacing: 1px;
-}
-
-.btn-open-issuer:hover::before {
+.husa-details-btn:hover::after {
   left: 100%;
 }
 
-.btn-open-issuer:hover i {
-  transform: rotate(360deg) scale(1.2);
-  color: #fff;
-}
-
-/* Hide internal button logic */
-.cert-modal-overlay.hide-internal-about #btn-show-issuer,
-.cert-modal-overlay.hide-internal-about #btn-back-to-cert {
-  display: none !important;
-}
-
+/* Modal Navigation Buttons */
+.modal-btn-about,
 .modal-btn-back {
   padding: 10px 25px;
   background: rgba(255, 255, 255, 0.05);
@@ -4536,12 +4559,15 @@ nav {
   transition: 0.3s;
   font-family: 'Cairo', sans-serif;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .modal-btn-about:hover,
 .modal-btn-back:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: var(--issuer-main-color, var(--clr-light-blue));
+  border-color: var(--issuer-main-color, #02aab0);
 }
 
 .social-links-container {
@@ -4559,98 +4585,10 @@ nav {
 
 .social-links-container a:hover {
   color: #1877F2;
-  /* Facebook Blue */
   transform: scale(1.1);
 }
 
-/* Responsiveness for Modal */
-@media (max-width: 600px) {
-  .cert-modal-container {
-    border-radius: 0;
-    height: 100%;
-    max-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .cert-modal-overlay {
-    padding: 0;
-  }
-
-  .cert-modal-body {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  .modal-slide {
-    padding: 20px;
-    height: auto;
-    min-height: 100%;
-  }
-
-  .cert-preview-wrapper {
-    max-height: none;
-    height: auto;
-  }
-
-  .modal-header-content h3 {
-    font-size: 1.1rem;
-  }
-
-  .issuer-description {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    text-align: justify;
-  }
-}
-/* ═══════════ HUSA Floating Button ═══════════ */
-.floating-center-btn {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--clr-light-blue);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  z-index: 10;
-}
-
-.floating-center-btn img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  transition: transform 0.3s;
-}
-
-.floating-center-btn:hover {
-  transform: scale(1.15) rotate(5deg);
-  border-color: var(--clr-gold);
-  box-shadow: 0 0 25px rgba(0, 242, 254, 0.7);
-}
-
-.floating-center-btn:hover img {
-  transform: scale(1.1);
-}
-
-@keyframes pulse-btn {
-  0% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.5); }
-  70% { box-shadow: 0 0 0 12px rgba(0, 242, 254, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
-}
-
-.floating-center-btn {
-    animation: pulse-btn 2s infinite;
-}
-
-/* Coursera Stats Mobile Optimization (Added via Automation) */
+/* Coursera Stats Mobile Optimization */
 @media (max-width: 768px) {
   .cour-stats-bar {
     gap: 0.8rem !important;
@@ -4668,14 +4606,242 @@ nav {
   .cour-stat-item i {
     font-size: 1.5rem !important;
     margin-bottom: 5px !important;
+    display: block;
   }
 
   .cour-stat-num {
     font-size: 1.4rem !important;
+    display: block;
   }
 
   .cour-stat-item span {
     font-size: 0.7rem !important;
     white-space: nowrap !important;
   }
+}
+
+/* ??????????????????????????????????????????????????????
+   CHATBOT FLOATING BUTTON � AI NEON STYLE
+   ?????????????????????????????????????????????????????? */
+
+.chatbot-fab-wrapper {
+  position: fixed;
+  bottom: 170px;
+  right: 24px;
+  width: 68px;
+  height: 68px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbot-fab {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 3;
+  background: transparent;
+  outline: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chatbot-fab:hover { transform: scale(1.12); }
+
+.chatbot-fab.chatbot-clicked {
+  animation: chatbot-bounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes chatbot-bounce {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(0.85); }
+  70%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.chatbot-img {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(0,242,254,0.7);
+  box-shadow: 0 0 18px rgba(0,242,254,0.6), 0 0 40px rgba(142,45,226,0.4), 0 0 60px rgba(255,8,68,0.2);
+  animation: chatbot-float 3.5s ease-in-out infinite;
+  display: block;
+}
+
+.chatbot-fab:hover .chatbot-img {
+  box-shadow: 0 0 28px rgba(0,242,254,0.9), 0 0 55px rgba(142,45,226,0.7), 0 0 80px rgba(255,8,68,0.5);
+}
+
+@keyframes chatbot-float {
+  0%,100% { transform: translateY(0px) rotate(0deg); }
+  33%     { transform: translateY(-8px) rotate(2deg); }
+  66%     { transform: translateY(-4px) rotate(-1deg); }
+}
+
+.chatbot-active-dot {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  width: 14px;
+  height: 14px;
+  background: #00ff88;
+  border-radius: 50%;
+  border: 2px solid #0f0c29;
+  box-shadow: 0 0 8px #00ff88, 0 0 16px #00ff88;
+  animation: dot-blink 1.6s ease-in-out infinite;
+  z-index: 4;
+}
+
+@keyframes dot-blink {
+  0%,100% { opacity: 1; box-shadow: 0 0 8px #00ff88, 0 0 16px #00ff88; }
+  50%     { opacity: 0.4; box-shadow: 0 0 4px #00ff88; }
+}
+
+.chatbot-pulse-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ring-1 { width: 88px;  height: 88px;  border-color: rgba(0,242,254,0.6);  animation: pulse-ring 2s ease-out infinite; }
+.ring-2 { width: 108px; height: 108px; border-color: rgba(142,45,226,0.45); animation: pulse-ring 2s ease-out infinite 0.65s; }
+.ring-3 { width: 130px; height: 130px; border-color: rgba(255,8,68,0.3);    animation: pulse-ring 2s ease-out infinite 1.3s; }
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.85); opacity: 0.9; }
+  70%  { transform: scale(1.15); opacity: 0.35; }
+  100% { transform: scale(1.3);  opacity: 0; }
+}
+
+.chatbot-orbit {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  animation: orbit-spin 6s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.orbit-particle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+}
+
+.p1 { background:#00f2fe; box-shadow:0 0 8px #00f2fe,0 0 16px #00f2fe; transform:translate(-50%,-50%) translateX(56px); }
+.p2 { background:#8e2de2; box-shadow:0 0 8px #8e2de2,0 0 16px #8e2de2; transform:translate(-50%,-50%) translateX(-56px); }
+.p3 { background:#ff0844; box-shadow:0 0 8px #ff0844,0 0 16px #ff0844; transform:translate(-50%,-50%) translateY(56px); }
+.p4 { background:#ffd700; box-shadow:0 0 8px #ffd700,0 0 16px #ffd700; transform:translate(-50%,-50%) translateY(-56px); }
+
+.chatbot-bubble {
+  position: absolute;
+  right: 78px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15,12,41,0.93);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(0,242,254,0.45);
+  border-radius: 18px 18px 4px 18px;
+  padding: 10px 16px;
+  min-width: 220px;
+  max-width: 280px;
+  box-shadow: 0 0 20px rgba(0,242,254,0.25), 0 0 40px rgba(142,45,226,0.15), 0 8px 32px rgba(0,0,0,0.5);
+  z-index: 5;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  animation: bubble-entrance 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.5s both;
+}
+
+@keyframes bubble-entrance {
+  from { opacity:0; transform:translateY(-50%) scale(0.7) translateX(20px); }
+  to   { opacity:1; transform:translateY(-50%) scale(1) translateX(0); }
+}
+
+.chatbot-bubble.bubble-hide {
+  opacity: 0;
+  transform: translateY(-50%) scale(0.9) translateX(10px);
+}
+
+.chatbot-bubble.bubble-show {
+  animation: bubble-pop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+@keyframes bubble-pop {
+  0%   { transform:translateY(-50%) scale(0.85); opacity:0; }
+  60%  { transform:translateY(-50%) scale(1.04); opacity:1; }
+  100% { transform:translateY(-50%) scale(1);    opacity:1; }
+}
+
+.chatbot-bubble::before {
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:linear-gradient(135deg,rgba(0,242,254,0.55),rgba(142,45,226,0.45),rgba(255,8,68,0.35),rgba(0,242,254,0.55));
+  background-size:300% 300%;
+  z-index:-1;
+  animation:bubble-shimmer 4s linear infinite;
+}
+
+@keyframes bubble-shimmer {
+  0%   { background-position:0% 50%; }
+  50%  { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+
+.bubble-text {
+  font-family:'Cairo',sans-serif;
+  font-size:0.88rem;
+  font-weight:600;
+  color:#d4f4ff;
+  display:block;
+  line-height:1.6;
+  text-align:right;
+  direction:rtl;
+  text-shadow:0 0 10px rgba(0,242,254,0.4);
+}
+
+.bubble-tail {
+  position:absolute;
+  right:-9px;
+  top:50%;
+  transform:translateY(-50%);
+  width:0;
+  height:0;
+  border-top:9px solid transparent;
+  border-bottom:9px solid transparent;
+  border-left:10px solid rgba(0,242,254,0.45);
+}
+
+@media (max-width:600px) {
+  .chatbot-fab-wrapper { bottom:130px; right:16px; width:58px; height:58px; }
+  .chatbot-fab, .chatbot-img { width:58px; height:58px; }
+  .chatbot-bubble { min-width:165px; max-width:210px; right:66px; padding:8px 12px; }
+  .bubble-text { font-size:0.78rem; }
+  .ring-1 { width:74px;  height:74px; }
+  .ring-2 { width:90px;  height:90px; }
+  .ring-3 { width:108px; height:108px; }
+  .chatbot-orbit { width:100px; height:100px; }
+  .p1 { transform:translate(-50%,-50%) translateX(47px); }
+  .p2 { transform:translate(-50%,-50%) translateX(-47px); }
+  .p3 { transform:translate(-50%,-50%) translateY(47px); }
+  .p4 { transform:translate(-50%,-50%) translateY(-47px); }
 }
